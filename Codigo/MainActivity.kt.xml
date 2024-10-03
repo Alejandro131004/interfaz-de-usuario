@@ -1,0 +1,38 @@
+package com.example.gymchallengeapp
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private var currentScreen = 1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+        val textView = TextView(this)
+        textView.text = "Reto 1"
+        textView.textSize = 24f
+
+        val nextButton = Button(this)
+        nextButton.text = "Siguiente Reto"
+
+
+        nextButton.setOnClickListener {
+            currentScreen = (currentScreen % 3) + 1
+            textView.text = "Reto $currentScreen"
+        }
+
+
+        val layout = LinearLayout(this)
+        layout.orientation = LinearLayout.VERTICAL
+        layout.addView(textView)
+        layout.addView(nextButton)
+
+        setContentView(layout)
+    }
+}
